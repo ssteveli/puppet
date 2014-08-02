@@ -18,8 +18,6 @@ node default {
 	include users::ssteveli
 
 	include sshd
-
-	include fail2ban
 }
 
 
