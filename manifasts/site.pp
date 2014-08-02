@@ -18,6 +18,8 @@ node default {
 	include users::ssteveli
 
 	include sshd
+
+	include docker
 }
 
 
