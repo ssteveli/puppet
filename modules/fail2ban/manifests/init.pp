@@ -7,11 +7,12 @@ class fail2ban {
 
 	package { 'fail2ban':
 		ensure => 'installed',
-		require => Package['epel7repo'],
+		require => Package['epel-release-7-0.2.noarch.rpm'],
 		allow_virtual => false,
 	}
 
 	service { 'fail2ban':
 		ensure => 'running',
+		require => Package['fail2ban'],
 	}
 }
