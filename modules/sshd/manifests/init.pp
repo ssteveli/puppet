@@ -16,7 +16,7 @@ class sshd {
 			"set PasswordAuthentication no",
 			"set PermitRootLogin no"
 		],
-		require => Package["openssh_server"],
+		require => Package["openssh-server"],
 		notify => Service["sshd"],
 	}		
 }
