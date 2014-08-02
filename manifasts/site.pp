@@ -7,7 +7,7 @@ Firewall {
 	require => Class['my_fw::pre'],
 }
 
-class { ['myfw::pre', 'my_fw::post']: }
+class { ['my_fw::pre', 'my_fw::post']: }
 class { 'firewall': }
 
 node default {
