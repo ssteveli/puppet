@@ -5,7 +5,7 @@ class users::ssteveli {
 
 	user { 'ssteveli':
 		ensure => 'present',
-		gid => 'build',
+		gid => 'ssteveli',
 		managehome => true,
 		password => '*',
 		require => Group['ssteveli'],
@@ -20,8 +20,8 @@ class users::ssteveli {
 
 	file { '/home/ssteveli/.ssh':
 		ensure => 'directory',
-		owner => 'build',
-		group => 'build',
+		owner => 'ssteveli',
+		group => 'ssteveli',
 		mode => '0700',
 		require => File['/home/ssteveli'],
 	}
