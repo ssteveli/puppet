@@ -20,6 +20,8 @@ node default {
 	include sshd
 
 	include docker
+	
+	include papply
 }
 
 
