@@ -13,7 +13,7 @@ class papply {
 	}
 	
 	cron { 'papply':
-		command => '/usr/bin/apply',
+		command => '/usr/bin/papply',
 		user => 'root',
 		minute => '*/5',
 		require => File['/usr/bin/papply'],
