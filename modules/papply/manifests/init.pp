@@ -1,8 +1,8 @@
 class papply {
 	$content = "#!/bin/sh
-		cd /opt/puppet; git pull
-		puppet apply /opt/puppet/manifasts/site.pp --modulepath=/opt/puppet/modules --hiera_config=/opt/puppet/hiera.yaml > /tmp/puppet.log 2>&1
-		"
+cd /opt/puppet; git pull
+puppet apply /opt/puppet/manifasts/site.pp --modulepath=/opt/puppet/modules --hiera_config=/opt/puppet/hiera.yaml > /tmp/puppet.log 2>&1
+"
 		
 	file { '/usr/bin/papply':
 		ensure => 'present',
