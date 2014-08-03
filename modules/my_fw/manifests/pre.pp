@@ -2,7 +2,7 @@ class my_fw::pre {
 	Firewall {
 		require => undef,
 	}
-	
+
 	firewall { '000 accept all icmp':
 		proto => 'icmp',
 		action => 'accept',
@@ -15,6 +15,11 @@ class my_fw::pre {
 	firewall { '002 accept related established rules':
 		proto => 'all',
 		state => ['RELATED', 'ESTABLISHED'],
+		action => 'accept',
+	}->
+	firewall { '003 accept all ssh connections':
+		proto => 'tcp',
+		port => 22,
 		action => 'accept',
 	}
 }
