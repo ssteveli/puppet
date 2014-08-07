@@ -1,0 +1,36 @@
+#!/bin/sh
+
+CONTAINER_ID=<%= @name %>
+IMAGE=<%= @image %>
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID 2> /dev/null)
+
+if [ "$RUNNING" == "true" ]; then
+        echo "$CONTAINER_ID is already running"
+        exit 0
+elif [ "$RUNNING" == "false" ]; then
+        CMD="docker start --attach=false --interactive=false $CONTAINER_ID"
+else
+        CMD="docker run -d --name $CONTAINER_ID \
+        <% if @ports %><% @ports_array.each do |port| %> \
+        -p <%= port %><% end %> \
+        <% end %> \
+        <% if @volumes %><% @volumes_array.each do |volume| %> \
+        	-v <%= volume %><% end %> \
+        <% end %> \
+        <% if @volumes_from %> --volumes-from <%= @volumes_from><% end %> \
+        <% if @links %><%= @links_array.map {|link| \
+        	"--link #{link}" }.join(' ') %> \
+        <% end %> \
+        $IMAGE"
+fi
+
+echo "executing: $CMD"
+$CMD
+
+if [ $? -eq 0 ]; then
+        echo "successfully started $CONTAINER_ID"
+        exit 0
+else
+        echo "starting $CONTAINER_ID failed"
+        exit 1
+fi

@@ -1,15 +1,7 @@
 class docker::run() {
 	file : { "/usr/bin/docker-$title-start.sh":
 		ensure => 'present',
-		content => template('docker-container-start.erb'),
-		owner => 'root',
-		group => 'root',
-		mode => '0755',
-	}
-
-	file : { "/usr/bin/docker-$title-stop.sh":
-		ensure => 'present',
-		content => template('docker-container-stop.erb'),
+		content => template('docker-start.erb'),
 		owner => 'root',
 		group => 'root',
 		mode => '0755',
