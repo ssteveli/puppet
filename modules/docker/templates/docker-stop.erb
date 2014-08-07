@@ -1,0 +1,24 @@
+#!/bin/sh
+
+CONTAINER_ID=<%= @name %>
+IMAGE=<%= @image %>
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID 2> /dev/null)
+
+if [ "$RUNNING" == "true" ]; then
+	echo "stopping docker container $CONTAINER_ID"
+	
+    docker stop $CONTAINER_ID
+	
+	if [ $? -eq 0 ]; then
+			echo "successfully stopped $CONTAINER_ID"
+			exit 0
+	else
+			echo "stopping $CONTAINER_ID failed"
+			exit 1
+	fi
+else
+	echo "$CONTAINER_ID is already stopped"
+fi
+
+exit 0
+
