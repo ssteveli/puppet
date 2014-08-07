@@ -1,7 +1,7 @@
 class docker::run {
 	file { "/usr/bin/docker-$title-start.sh":
 		ensure => 'present',
-		content => template('docker-start.erb'),
+		content => template('docker/docker-start.erb'),
 		owner => 'root',
 		group => 'root',
 		mode => '0755',
@@ -9,7 +9,7 @@ class docker::run {
 
 	file { "/usr/lib/systemd/system/$title.service":
 		ensure => 'present',
-		content => template('systemd-container.erb'),
+		content => template('docker/systemd-container.erb'),
 		owner => 'root',
 		group => 'root',
 		mode => '0644',
