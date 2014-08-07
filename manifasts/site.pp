@@ -24,5 +24,9 @@ node default {
 	include papply
 }
 
+node 'sc-mongodb1' inherits default {
+	include strava-mongodb
+}
+
 
 
