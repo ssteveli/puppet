@@ -2,7 +2,13 @@ define docker::run(
 	$image,
 	$after='docker.service',
 	$volumes=[],
-	$links=[]) {
+	$links=[],
+	$ports=[]) {
+	
+	$volumes_array = any2array($volumes)
+	$ports_array = any2array($ports)
+	$links_array = any2array($links)
+	
 	file { "/usr/bin/docker-$name-start.sh":
 		ensure => 'present',
 		content => template('docker/docker-start.erb'),
