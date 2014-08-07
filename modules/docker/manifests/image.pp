@@ -5,11 +5,11 @@ define docker::image(
 	
 	if $image_tag {
 		$image_install = "docker pull -t=\"${image_tag}\" ${image}"
-		$image_remove = "docker rmi ${image}:${image_tag}
+		$image_remove = "docker rmi ${image}:${image_tag}"
 		$image_find = "docker images | grep ^${image} | awk '{ print \$2 }' | grep ${image_tag}"
 	} else {
 		$image_install = "docker pull ${image}"
-		$image_remove = "docker rmi ${image}
+		$image_remove = "docker rmi ${image}"
 		$image_find = "docker images | grep ^${image}"
 	}
 	
