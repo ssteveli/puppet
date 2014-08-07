@@ -32,7 +32,7 @@ node /^sc-mongodb\d+$/ inherits default {
 	
 	docker::run { 'registry':
 		image => 'registry',
-		ports => ['5000:5000']
+		ports => ['192.168.169.32:5000:5000']
 	}
 }
 
