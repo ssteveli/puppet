@@ -1,6 +1,6 @@
 class strava-mongodb {
 	
-	$systemd-content = "[Unit]
+	$content = "[Unit]
 Description=MongoDb Container
 After=docker.service
 
@@ -13,10 +13,9 @@ Restart=on-failure
 [Install]
 WantedBy=local.target
 "
-
 	file { '/usr/lib/systemd/system/strava-mongodb.service':
 		ensure => 'present',
-		content => "$systemd-content",
+		content => "$content",
 		owner => 'root',
 		group => 'root',
 		mode => '0644',
