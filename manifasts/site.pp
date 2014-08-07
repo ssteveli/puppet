@@ -29,8 +29,16 @@ node /^sc-mongodb\d+$/ inherits default {
 }
 
 node /^sc-web\d+$/ inherits default {
+	docker::image { 'rgarcia/gearmand':
+		ensure => 'present',
+	}
+	
 	docker::run { 'strava-gearmand':
 		image => 'rgarcia/gearmand'
+	}
+	
+	docker::image { 'ssteveli/strava-gearman-workers':
+		ensure => 'latest',
 	}
 	
 	docker::run { 'strava-gearmandworker':
