@@ -1,4 +1,6 @@
-class docker::run($image) {
+class docker::run(
+	$image,
+	$after='docker.service') {
 	file { "/usr/bin/docker-$name-start.sh":
 		ensure => 'present',
 		content => template('docker/docker-start.erb'),
