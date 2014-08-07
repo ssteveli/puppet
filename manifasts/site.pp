@@ -24,8 +24,12 @@ node default {
 	include papply
 }
 
-node 'sc-mongodb1' inherits default {
+node /^sc-mongodb\d{2}$/ inherits default {
 	include strava-mongodb
+}
+
+node /^sc-web\d{2}$/ inherits default {
+	include strava-gearmand
 }
 
 
