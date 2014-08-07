@@ -15,7 +15,7 @@ class docker::run {
 		mode => '0644',
 	}
 
-	service { "$title":
+	service { "$name":
 		ensure => 'running',
 		require => [
 			File ["/usr/lib/systemd/system/$name.service"],
