@@ -1,5 +1,5 @@
 class docker::run {
-	file { "/usr/bin/docker-$title-start.sh":
+	file { "/usr/bin/docker-$name-start.sh":
 		ensure => 'present',
 		content => template('docker/docker-start.erb'),
 		owner => 'root',
@@ -7,7 +7,7 @@ class docker::run {
 		mode => '0755',
 	}
 
-	file { "/usr/lib/systemd/system/$title.service":
+	file { "/usr/lib/systemd/system/$name.service":
 		ensure => 'present',
 		content => template('docker/systemd-container.erb'),
 		owner => 'root',
@@ -18,9 +18,9 @@ class docker::run {
 	service { "$title":
 		ensure => 'running',
 		require => [
-			File ["/usr/lib/systemd/system/$title.service"],
-			File ["/usr/bin/docker-$title-start.sh"],
-			File ["/usr/bin/docker-$title-stop.sh"],
+			File ["/usr/lib/systemd/system/$name.service"],
+			File ["/usr/bin/docker-$name-start.sh"],
+			File ["/usr/bin/docker-$name-stop.sh"],
 			Service['docker']
 		]
 	}
