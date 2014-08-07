@@ -1,4 +1,4 @@
-class docker::run(
+define docker::run(
 	$image,
 	$after='docker.service') {
 	file { "/usr/bin/docker-$name-start.sh":
