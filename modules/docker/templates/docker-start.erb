@@ -6,11 +6,11 @@ RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID 2> /dev/n
 
 if [ "$RUNNING" == "true" ]; then
         echo "$CONTAINER_ID is already running"
-        exit 0
+        docker wait $CONTAINER_ID
 elif [ "$RUNNING" == "false" ]; then
-        CMD="docker start --attach=false --interactive=false $CONTAINER_ID"
+        CMD="docker start -a -i $CONTAINER_ID"
 else
-        CMD="docker run -d --name $CONTAINER_ID \
+        CMD="docker run --name $CONTAINER_ID \
         <% if @ports %><% @ports_array.each do |port| %> \
         -p <%= port %><% end %> \
         <% end %> \
@@ -29,6 +29,7 @@ $CMD
 
 if [ $? -eq 0 ]; then
         echo "successfully started $CONTAINER_ID"
+        docker wait $CONTAINER_ID
         exit 0
 else
         echo "starting $CONTAINER_ID failed"

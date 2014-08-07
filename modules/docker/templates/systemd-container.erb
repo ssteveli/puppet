@@ -3,10 +3,9 @@ Description=<%= @name %> Container
 After=<%= @after %>
 
 [Service]
-Type=oneshot
 ExecStart=/usr/bin/docker-<%= @name %>-start.sh
 ExecStop=/usr/bin/docker-<%= @name %>-stop.sh
-Restart=on-failure
+Restart=always
 
 [Install]
 WantedBy=local.target
