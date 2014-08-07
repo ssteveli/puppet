@@ -26,14 +26,6 @@ node default {
 
 node /^sc-mongodb\d+$/ inherits default {
 	include strava-mongodb
-	
-	docker::image { 'registry':
-	}
-	
-	docker::run { 'registry':
-		image => 'registry',
-		ports => ['192.168.169.32:5000:5000']
-	}
 }
 
 node /^sc-web\d+$/ inherits default {
