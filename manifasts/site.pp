@@ -40,6 +40,14 @@ node /^sc-web\d+$/ inherits default {
 	docker::image { 'ssteveli/strava-gearman-workers':
 		ensure => 'latest',
 	}
+
+	docker::image { 'ssteveli/strava-api':
+		ensure => 'latest',
+	}
+
+	docker::image { 'ssteveli/strava-web':
+		ensure => 'latest',
+	}
 	
 	docker::run { 'strava-gearmandworker':
 		image => 'ssteveli/strava-gearman-workers',
