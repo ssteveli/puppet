@@ -31,6 +31,7 @@ node /^sc-mongodb\d+$/ inherits default {
 node /^sc-web\d+$/ inherits default {
 	class { 'docker::run':
 		name => 'strava-gearmand',
+		image => 'rgarcia/gearmand'
 	}
 }
 
