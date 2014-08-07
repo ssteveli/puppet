@@ -7,6 +7,14 @@ class docker::run($image) {
 		mode => '0755',
 	}
 
+	file { "/usr/bin/docker-$name-stop.sh":
+		ensure => 'present',
+		content => template('docker/docker-stop.erb'),
+		owner => 'root',
+		group => 'root',
+		mode => '0755',
+	}
+	
 	file { "/usr/lib/systemd/system/$name.service":
 		ensure => 'present',
 		content => template('docker/systemd-container.erb'),
@@ -20,6 +28,7 @@ class docker::run($image) {
 		require => [
 			File ["/usr/lib/systemd/system/$name.service"],
 			File ["/usr/bin/docker-$name-start.sh"],
+			File ["/usr/bin/docker-$name-stop.sh"],
 			Service['docker']
 		]
 	}
