@@ -1,6 +1,8 @@
 define docker::run(
 	$image,
-	$after='docker.service') {
+	$after='docker.service',
+	$volumes=[],
+	$links=[]) {
 	file { "/usr/bin/docker-$name-start.sh":
 		ensure => 'present',
 		content => template('docker/docker-start.erb'),
