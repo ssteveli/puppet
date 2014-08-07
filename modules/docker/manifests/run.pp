@@ -20,7 +20,6 @@ class docker::run {
 		require => [
 			File ["/usr/lib/systemd/system/$name.service"],
 			File ["/usr/bin/docker-$name-start.sh"],
-			File ["/usr/bin/docker-$name-stop.sh"],
 			Service['docker']
 		]
 	}
