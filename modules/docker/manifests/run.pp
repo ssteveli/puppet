@@ -1,5 +1,5 @@
 class docker::run {
-	file : { "/usr/bin/docker-$title-start.sh":
+	file { "/usr/bin/docker-$title-start.sh":
 		ensure => 'present',
 		content => template('docker-start.erb'),
 		owner => 'root',
