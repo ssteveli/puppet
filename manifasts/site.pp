@@ -45,7 +45,7 @@ node /^sc-mongodb\d+$/ inherits default {
 	docker::run { 'strava-mongodb':
 		image => 'dockerfile/mongodb',
 		volumes => ['/data:/data'],
-		ports => ["$mongohost:$mongoport:27017]
+		ports => ["$mongohost:$mongoport:27017"]
 	}
 }
 
