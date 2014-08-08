@@ -40,20 +40,36 @@ node /^sc-web\d+$/ inherits default {
 	docker::image { 'ssteveli/strava-gearman-workers':
 		ensure => 'latest',
 	}
+	
+	docker::run { 'strava-gearmandworker':
+		image => 'ssteveli/strava-gearman-workers',
+		volumes => ['/data:/data'],
+		links => ['strava-gearmand:strava-gearmand'],
+		require => Docker::Run['strava-gearmand'],
+	}
 
 	docker::image { 'ssteveli/strava-api':
 		ensure => 'latest',
 	}
 
+	docker::run { 'strava-api':
+		image => 'ssteveli/strava-api',
+		volumes => ['/data:/data'],
+		links => ['strava-gearmand:strava-gearmand'],
+		require => Docker::Run['strava-gearmand'],
+	}
+	
 	docker::image { 'ssteveli/strava-web':
 		ensure => 'latest',
 	}
-	
-	docker::run { 'strava-gearmandworker':
-		image => 'ssteveli/strava-gearman-workers',
-		volumes => ['/data'],
-		links => ['strava-gearmand:strava-gearmand'],
+
+	docker::run { 'strava-web':
+		image => 'ssteveli/strava-web',
+		volumes => ['/data:/data'],
+		links => ['strava-api:strava-api'],
+		require => Docker::Run['strava-api'],
 	}
+	
 }
 
 
