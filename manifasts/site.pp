@@ -33,7 +33,7 @@ node /^sc-mongodb\d+$/ inherits default {
 node /^sc-web\d+$/ inherits default {
 	$environment = 'production'
 	
-	include stravasocial->
+	class { 'stravasocial':}->
 	
 	docker::image { 'rgarcia/gearmand':
 		ensure => 'present',
