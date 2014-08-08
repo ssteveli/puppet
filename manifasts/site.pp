@@ -27,6 +27,8 @@ node default {
 node /^sc-mongodb\d+$/ inherits default {
 	$environment = 'production'
 	
+	include my_fw::mongo
+	
 	include strava-mongodb
 }
 
