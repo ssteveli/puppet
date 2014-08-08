@@ -29,7 +29,7 @@ class stravasocial(
 		owner => 'root',
 		group => 'root',
 		mode => '0644',
-		contents => template('stravasocial/localconfig.erb'),
+		content => template('stravasocial/localconfig.erb'),
 		require => Exec['initial stravasocial git clone'],
 	}
 }
