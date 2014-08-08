@@ -13,7 +13,7 @@ class stravasocial {
 	exec { 'initial stravasocial git clone':
 		path => ['/bin', '/usr/bin'],
 		creates => '/data/stravasocial',
-		command => 'git clone https://github.com/ssteveli/stravasocial /data/stravasocial'
-		require => [Package['git'], File['/data']]
+		command => 'git clone https://github.com/ssteveli/stravasocial /data/stravasocial',
+		require => [Package['git'], File['/data']],
 	}
 }
