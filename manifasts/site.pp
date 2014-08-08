@@ -68,6 +68,7 @@ node /^sc-web\d+$/ inherits default {
 		volumes => ['/data:/data'],
 		links => ['strava-api:strava-api'],
 		require => Docker::Run['strava-api'],
+		ports => ['80:80']
 	}
 	
 }
