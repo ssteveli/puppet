@@ -33,15 +33,15 @@ node /^sc-mongodb\d+$/ inherits default {
 		ensure => 'present',
 		owner => 'root',
 		group => 'root',
-		mode => '0755'
+		mode => '0755',
 	}
 	
 	docker::image { 'dockerfile/mongodb':
 		ensure => 'present',
 	}->
 	docker::run { 'strava-mongodb':
-		image => 'dockerfile/mongodb'
-		volumes => ['/data:/data']
+		image => 'dockerfile/mongodb',
+		volumes => ['/data:/data'],
 	}
 }
 
