@@ -1,9 +1,9 @@
 from pyconfig import Namespace
 
 mongo = Namespace()
-mongo.host = '<%= mongohost %>'
-mongo.port = '<%= mongoport %>'
+mongo.host = '<%= @mongohost %>'
+mongo.port = '<%= @mongoport %>'
 
 strava = Namespace()
-strava.client_id = <%= stravaclientid %>
-strava.client_secret = <%= stravaclientsecret %>
+strava.client_id = <%= @stravaclientid %>
+strava.client_secret = <%= @stravaclientsecret %>
