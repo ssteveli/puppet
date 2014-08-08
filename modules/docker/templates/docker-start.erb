@@ -7,7 +7,7 @@ RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID 2> /dev/n
 if [ "$RUNNING" == "true" ]; then
         echo "$CONTAINER_ID is already running, killing it and removing it"
         docker kill $CONTAINER_ID
-        docker rm -r $CONTAINER_ID
+        docker rm -f $CONTAINER_ID
 elif [ "$RUNNING" == "false" ]; then
 		echo "removing $CONTAINER_ID"
         docker rm -f $CONTAINER_ID
