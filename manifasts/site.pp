@@ -33,6 +33,8 @@ node /^sc-mongodb\d+$/ inherits default {
 node /^sc-web\d+$/ inherits default {
 	$environment = 'production'
 	
+	include my_fw::web
+	
 	class { 'stravasocial':}->
 	
 	docker::image { 'rgarcia/gearmand':
