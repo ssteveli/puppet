@@ -20,7 +20,7 @@ node default {
 	include sshd
 
 	include docker
-	
+
 	include papply
 }
 
@@ -32,15 +32,14 @@ node /^sc-web\d+$/ inherits default {
 	docker::image { 'rgarcia/gearmand':
 		ensure => 'present',
 	}
-	
+
 	docker::run { 'strava-gearmand':
 		image => 'rgarcia/gearmand'
 	}
-	
+
 	docker::image { 'ssteveli/strava-gearman-workers':
-		ensure => 'latest',
 	}
-	
+
 	docker::run { 'strava-gearmandworker':
 		image => 'ssteveli/strava-gearman-workers',
 		volumes => ['/data:/data'],
@@ -49,7 +48,6 @@ node /^sc-web\d+$/ inherits default {
 	}
 
 	docker::image { 'ssteveli/strava-api':
-		ensure => 'latest',
 	}
 
 	docker::run { 'strava-api':
@@ -58,9 +56,8 @@ node /^sc-web\d+$/ inherits default {
 		links => ['strava-gearmand:strava-gearmand'],
 		require => Docker::Run['strava-gearmand'],
 	}
-	
+
 	docker::image { 'ssteveli/strava-web':
-		ensure => 'latest',
 	}
 
 	docker::run { 'strava-web':
@@ -70,7 +67,7 @@ node /^sc-web\d+$/ inherits default {
 		require => Docker::Run['strava-api'],
 		ports => ['80:80']
 	}
-	
+
 }
 
 
