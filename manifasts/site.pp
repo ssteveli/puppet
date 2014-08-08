@@ -36,12 +36,16 @@ node /^sc-mongodb\d+$/ inherits default {
 		mode => '0755',
 	}
 	
+	$mongohost = hiera('stravasocial::mongohost')
+	$mongoport = hiera('stravasocial::mongoport')
+	
 	docker::image { 'dockerfile/mongodb':
 		ensure => 'present',
 	}->
 	docker::run { 'strava-mongodb':
 		image => 'dockerfile/mongodb',
 		volumes => ['/data:/data'],
+		ports => ["$mongohost:$mongoport:27017]
 	}
 }
 
