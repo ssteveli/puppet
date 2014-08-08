@@ -29,7 +29,20 @@ node /^sc-mongodb\d+$/ inherits default {
 	
 	include my_fw::mongo
 	
-	include strava-mongodb
+	file { '/data':
+		ensure => 'present',
+		owner => 'root',
+		group => 'root',
+		mode => '0755'
+	}
+	
+	docker::image { 'dockerfile/mongodb':
+		ensure => 'present',
+	}->
+	docker::run { 'strava-mongodb':
+		image => 'dockerfile/mongodb'
+		volumes => ['/data:/data']
+	}
 }
 
 node /^sc-web\d+$/ inherits default {
