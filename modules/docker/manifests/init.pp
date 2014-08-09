@@ -11,7 +11,7 @@ class docker {
 	
 	firewall { '300 allow docker0 connections':
 		chain => 'FORWARD',
-		action => 'ACCEPT',
+		action => 'accept',
 		outiface => 'docker0',
 		ctstate => ['RELATED','ESTABLISHED'],
 		proto => 'all',
@@ -19,7 +19,7 @@ class docker {
 	
 	firewall { '301 allow docker0 traffic out':
 		chain => 'FORWARD',
-		action => 'ACCEPT',
+		action => 'accept',
 		proto => 'all',
 		iniface => 'docker0',
 		outiface => 'eth0',
@@ -27,7 +27,7 @@ class docker {
 	
 	firewall { '302 allow docker0 traffic to docker0':
 		chain => 'FORWARD',
-		action => 'ACCEPT',
+		action => 'accept',
 		proto => 'all',
 		iniface => 'docker0',
 		outiface => 'docker0',
