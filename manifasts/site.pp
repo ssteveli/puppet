@@ -1,5 +1,5 @@
 resources { "firewall":
-	purge => true,
+	purge => false,
 }
 
 Firewall {
