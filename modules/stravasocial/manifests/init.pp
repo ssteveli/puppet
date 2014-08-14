@@ -4,13 +4,11 @@ class stravasocial(
 	$stravaclientid,
 	$stravaclientsecret
 ) {
-
-	
 	package { 'git':
 		ensure => 'present',
 	}
 	
-	file { '/data':
+	file { ['/data','/data/cache']:
 		ensure => 'directory',
 		owner => 'root',
 		group => 'root',

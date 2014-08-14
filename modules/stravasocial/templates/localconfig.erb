@@ -9,3 +9,8 @@ mongodb.port = '<%= @mongoport %>'
 strava = Namespace()
 strava.client_id = <%= @stravaclientid %>
 strava.client_secret = '<%= @stravaclientsecret %>'
+
+cache = Namespace()
+cache.data_dir = '/data/cache/data'
+cache.lock_dir = '/data/cache/lock'
+
