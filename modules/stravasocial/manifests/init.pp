@@ -8,7 +8,7 @@ class stravasocial(
 		ensure => 'present',
 	}
 	
-	file { ['/data','/data/cache']:
+	file { ['/data','/data/cache','/data/log']:
 		ensure => 'directory',
 		owner => 'root',
 		group => 'root',
