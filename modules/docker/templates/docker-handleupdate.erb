@@ -10,6 +10,7 @@ if [ -e "$UPDATE_FILE" ]; then
 
 	if [ $? -eq 0 ]; then
 			echo "successfully pulled the latest version of $CONTAINER_ID"
+			rm -rf $UPDATE_FILE
 			exit 0
 	else
 			echo "pulling the latest $CONTAINER_ID failed"
