@@ -4,11 +4,11 @@ define docker::run(
 	$volumes=[],
 	$links=[],
 	$ports=[]) {
-	
+
 	$volumes_array = any2array($volumes)
 	$ports_array = any2array($ports)
 	$links_array = any2array($links)
-	
+
 	file { "/usr/bin/docker-$name-start.sh":
 		ensure => 'present',
 		content => template('docker/docker-start.erb'),
@@ -24,7 +24,15 @@ define docker::run(
 		group => 'root',
 		mode => '0755',
 	}
-	
+
+	file { "/usr/bin/docker-$name-update.sh":
+		ensure => 'present',
+		content => template('docker/docker-handleupdate.erb'),
+		owner => 'root',
+		group => 'root',
+		mode => '0755',
+	}
+
 	file { "/usr/lib/systemd/system/$name.service":
 		ensure => 'present',
 		content => template('docker/systemd-container.erb'),

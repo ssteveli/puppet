@@ -2,12 +2,18 @@
 
 CONTAINER_ID=<%= @name %>
 RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID 2> /dev/null)
+UPDATE_FILE=/tmp/<%= @name %>-forceupdate
+
+# before we shut anything down, let's see if we need to pull and update
+if [ -e "$UPDATE_FILE" ] && [ -e "/usr/bin/docker-$CONTAINER_ID-update.sh" ]; then
+	/usr/bin/docker-$CONTAINER_ID-update.sh
+fi
 
 if [ "$RUNNING" == "true" ]; then
 	echo "stopping docker container $CONTAINER_ID"
-	
+
     docker stop $CONTAINER_ID
-	
+
 	if [ $? -eq 0 ]; then
 			echo "successfully stopped $CONTAINER_ID"
 			exit 0

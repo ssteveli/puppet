@@ -1,0 +1,20 @@
+#!/bin/sh
+
+CONTAINER_ID=<%= @name %>
+UPDATE_FILE=/tmp/<%= @name %>-forceupdate
+
+if [ -e "$UPDATE_FILE" ]; then
+	echo "pulling latest docker container for $CONTAINER_ID"
+
+	docker pull $CONTAINER_ID:latest
+
+	if [ $? -eq 0 ]; then
+			echo "successfully pulled the latest version of $CONTAINER_ID"
+			exit 0
+	else
+			echo "pulling the latest $CONTAINER_ID failed"
+			exit 1
+	fi
+fi
+
+exit 0
