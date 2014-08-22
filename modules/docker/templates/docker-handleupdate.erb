@@ -1,12 +1,13 @@
 #!/bin/sh
 
 CONTAINER_ID=<%= @name %>
+IMAGE=<%= @image %>
 UPDATE_FILE=/tmp/<%= @name %>-forceupdate
 
 if [ -e "$UPDATE_FILE" ]; then
 	echo "pulling latest docker container for $CONTAINER_ID"
 
-	docker pull $CONTAINER_ID:latest
+	docker pull $IMAGE:latest
 
 	if [ $? -eq 0 ]; then
 			echo "successfully pulled the latest version of $CONTAINER_ID"
