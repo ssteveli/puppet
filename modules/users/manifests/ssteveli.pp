@@ -34,6 +34,14 @@ class users::ssteveli {
 		group => 'root',
 	}
 
+	ssh_authorized_key { 'ssteveli-ssh-key-macbookpro':
+		ensure => 'present',
+		type => 'ssh-rsa',
+		key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDl/CnkZLlIYBvt9P6NfwcxVp/nh6PbftvhkyGf7jSrB7QJj805HoMoDoLpAGeXov0sSh16xkg/enNNJnXBvmJVKYDTdnUCZSaqR6+Cs87Q5hEAsdMLMn34qN+SGyZfS5SW1UpuKjMUPCg9FFUbFuukUOTp/5cQROdjPcRkmMnwmHMsFexM5V154+19B+vEK6zxPMsyneiKUxrwX1kz3VJssWbOcI15pdP1fixUvSCP0xze24SdidN1ejhFwxixgjz92PrZownrySuuuuaOkgAIHI2MoeBadllEgmRDBgdSbfoJF5RxtA+8SCoXeNn7SK8u8OXn0N0aXsk/c2jRsSbF',
+		user => 'ssteveli',
+		require => File['/home/ssteveli/.ssh'],
+	}
+
 	ssh_authorized_key { 'ssteveli-ssh-key-imac':
 		ensure => 'present',
 		type => 'ssh-rsa',
